@@ -109,14 +109,14 @@
             // |  TAB  |  Q  |  W  |  E   |  R   |  T   |               |  Y   |  U    |  I    |  O   |   P   |   Å   |
             // |CTL/ESC|  A  |  S  |  D   |  F   |  G   |               |  H   |  J    |  K    |  L   |   Ö   |   Ä   |
             // | SHIFT |  Z  |  X  |  C   |  V   |  B   | MUTE | | PLAY |  N   |  M    |  ,    |  .   |   -   | SHIFT |
-            //               | CTRL| ALT  | BSPC | LOWER| SPACE| | ENTER| RAISE| CMD   | DEL   | CAPS |
+            //               | ALT | CMD  | BSPC | LOWER| SPACE| | ENTER| RAISE| CMD   | CTL   | CAPS |
 
             bindings = <
 &gresc          &kp SV_N1  &kp SV_N2  &kp SV_N3  &kp SV_N4  &kp SV_N5                                 &kp SV_N6  &kp SV_N7  &kp SV_N8     &kp SV_N9    &kp SV_N0        &kp SV_PLUS
 &kp TAB         &kp SV_Q   &kp SV_W   &kp SV_E   &kp SV_R   &kp SV_T                                  &kp SV_Y   &kp SV_U   &kp SV_I      &kp SV_O     &kp SV_P         &kp SV_A_RING
 &mt LCTRL ESC   &kp SV_A   &kp SV_S   &kp SV_D   &kp SV_F   &kp SV_G                                  &kp SV_H   &kp SV_J   &kp SV_K      &kp SV_L     &kp SV_O_UMLAUT  &kp SV_A_UMLAUT
 &kp LEFT_SHIFT  &kp SV_Z   &kp SV_X   &kp SV_C   &kp SV_V   &kp SV_B   &kp C_MUTE    &kp C_PLAY_PAUSE &kp SV_N   &kp SV_M   &kp SV_COMMA  &kp SV_DOT   &kp SV_MINUS     &kp RSHFT
-                           &kp LCTRL  &kp LALT   &kp BSPC   &mo LOWER  &kp SPACE     &kp ENTER        &mo RAISE  &kp RGUI   &kp DEL       &caps
+                           &kp LALT  &kp LGUI   &kp BSPC   &mo LOWER  &kp SPACE     &kp ENTER        &mo RAISE  &kp RGUI   &kp RCTL       &kp CLCK
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp UP DOWN>;
