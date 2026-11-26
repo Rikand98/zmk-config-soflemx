@@ -83,6 +83,104 @@
             #binding-cells = <0>;
             bindings = <&kp SV_EXCL &kp SV_EQUAL>;
         };
+
+        // Neovim: window management (normal mode)
+        nv_split_below: nv_split_below {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(W) &kp SV_S>;
+        };
+
+        nv_split_right: nv_split_right {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(W) &kp SV_V>;
+        };
+
+        nv_close_win: nv_close_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(W) &kp SV_C>;
+        };
+
+        nv_zoom_win: nv_zoom_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE &kp SV_W &kp SV_M>;
+        };
+
+        nv_equalize: nv_equalize {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(W) &kp SV_EQUAL>;
+        };
+
+        nv_rotate: nv_rotate {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(W) &kp SV_R>;
+        };
+
+        nv_narrow: nv_narrow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(W) &kp INT1>;
+        };
+
+        nv_wide: nv_wide {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(W) &kp LS(INT1)>;
+        };
+
+        nv_short: nv_short {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(W) &kp SV_MINUS>;
+        };
+
+        nv_tall: nv_tall {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(W) &kp SV_PLUS>;
+        };
+
+        // Neovim: REPL and data (leader is Space)
+        nv_send_line: nv_send_line {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE &kp ENTER>;
+        };
+
+        nv_send_file: nv_send_file {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE &kp LS(ENTER)>;
+        };
+
+        nv_toggle_repl: nv_toggle_repl {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE &kp SV_R &kp SV_I>;
+        };
+
+        nv_restart_repl: nv_restart_repl {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE &kp SV_R &kp LS(SV_I)>;
+        };
+
+        nv_csv_semi: nv_csv_semi {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE &kp SV_C &kp SV_SEMI>;
+        };
+
+        nv_csv_comma: nv_csv_comma {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE &kp SV_C &kp SV_COMMA>;
+        };
     };
 
     behaviors {
@@ -143,18 +241,19 @@
             display-name = "NavNum";
 
             // | trans | TABprv| TABnxt| TABnew| C-d   | C-u   |              |  6    |  7    |  8    |  9    |  0    |  +    |
-            // |   :   | Home  | PGUP  | PGDN  | END   | ENTER |              | trans |  4    |  5    |  6    |  +    | trans |
-            // | trans | SELALL| SAVE  | DEL   | FIND  | trans |              |  =    |  1    |  2    |  3    |  -    |  *    |
-            // | trans | UNDO  | CUT   | COPY  | PASTE | REDO  | trans| |trans| SELdn | SELrt |  0    | trans |  .    |  /    |
+            // |   :   | Home  | PGUP  | PGDN  | END   | ENTER |              | SPLIT↓| SPLIT→| CLOSE | ZOOM  | EQ    | ROTATE|
+            // | trans | SELALL| SAVE  | DEL   | FIND  | trans |              | SEND  | TOGGLE| SENDFL| RESTRT| PREVB | NEXTB |
+            // | trans | UNDO  | CUT   | COPY  | PASTE | REDO  | trans| |trans| NARROW| WIDE  | SHORT | TALL  | CSV;  | CSV,  |
             //               |trans| trans| trans| trans|SPOTLIGHT| |trans| trans| trans| trans| trans|
 
-            // WezTerm: Ctrl+Cmd+h/l/n = flik prev/next/ny. Cmd+hjkl (nvim-fönster) tas med Cmd-tummen på basen.
-            // Home row: Cmd+A / Cmd+S / Cmd+- (radera markerade celler) / Cmd+F.
+            // Neovim (normal mode): right half = windows, buffers, REPL, CSV. Window focus stays on Cmd+hjkl.
+            // WezTerm: Ctrl+Cmd+h/l/n = flik prev/next/ny.
+            // Home row left: Cmd+A / Cmd+S / Cmd+- (radera markerade celler) / Cmd+F.
             bindings = <
 &trans       &kp LC(LG(SV_H)) &kp LC(LG(SV_L)) &kp LC(LG(SV_N)) &kp LC(D)   &kp LC(U)                       &trans        &trans        &trans        &trans        &trans        &trans
-&kp SV_COLON &kp HOME     &kp PG_UP    &kp PG_DN    &kp END     &kp ENTER                       &trans        &kp SV_N4     &kp SV_N5     &kp SV_N6     &kp SV_PLUS   &trans
-&trans       &kp LG(SV_A) &kp LG(SV_S) &kp LG(SV_MINUS) &kp LG(SV_F) &trans                          &kp SV_EQUAL  &kp SV_N1     &kp SV_N2     &kp SV_N3     &kp SV_MINUS  &kp SV_ASTRK
-&trans       &kp LG(Z)     &kp LG(X)     &kp LG(C)     &kp LG(V)   &kp LG(LS(Z)) &trans  &trans  &kp LG(LS(DOWN)) &kp LG(LS(RIGHT)) &kp SV_N0 &trans &kp SV_DOT &kp SV_FSLH
+&kp SV_COLON &kp HOME     &kp PG_UP    &kp PG_DN    &kp END     &kp ENTER                       &nv_split_below &nv_split_right &nv_close_win &nv_zoom_win &nv_equalize &nv_rotate
+&trans       &kp LG(SV_A) &kp LG(SV_S) &kp LG(SV_MINUS) &kp LG(SV_F) &trans                          &nv_send_line &nv_toggle_repl &nv_send_file &nv_restart_repl &kp LS(SV_H) &kp LS(SV_L)
+&trans       &kp LG(Z)     &kp LG(X)     &kp LG(C)     &kp LG(V)   &kp LG(LS(Z)) &trans  &trans  &nv_narrow &nv_wide &nv_short &nv_tall &nv_csv_semi &nv_csv_comma
                           &trans       &trans        &trans        &trans        &kp LG(SPACE)   &trans  &trans        &trans        &trans        &trans
             >;
 
