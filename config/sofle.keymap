@@ -21,7 +21,7 @@
 
 &right_encoder { steps = <60>; };
 
-// Tab mod-tap: quick tap = Tab, hold = Shift (capitals)
+// Tab mod-tap: quick tap = Tab, hold = Caps Lock
 &mt {
     tapping-term-ms = <175>;
     quick-tap-ms = <150>;
@@ -144,17 +144,18 @@
 
             // | trans | TABprv| TABnxt| TABnew| C-d   | C-u   |              |  6    |  7    |  8    |  9    |  0    |  +    |
             // |   :   | Home  | PGUP  | PGDN  | END   | ENTER |              | trans |  4    |  5    |  6    |  +    | trans |
-            // | trans | PANE< | PANEv | PANE^ | PANE> | trans |              |  =    |  1    |  2    |  3    |  -    |  *    |
+            // | trans | SELALL| SAVE  | DEL   | FIND  | trans |              |  =    |  1    |  2    |  3    |  -    |  *    |
             // | trans | UNDO  | CUT   | COPY  | PASTE | REDO  | trans| |trans| SELdn | SELrt |  0    | trans |  .    |  /    |
-            //               |trans| trans| trans| trans| trans| |trans| trans| trans| trans| trans| trans|
+            //               |trans| trans| trans| trans|SPOTLIGHT| |trans| trans| trans| trans| trans|
 
-            // WezTerm: Ctrl+Cmd+h/l/n = flik prev/next/ny, Cmd+Shift+hjkl = pane. Cmd+hjkl (nvim-fönster) tas med Cmd-tummen på basen.
+            // WezTerm: Ctrl+Cmd+h/l/n = flik prev/next/ny. Cmd+hjkl (nvim-fönster) tas med Cmd-tummen på basen.
+            // Home row: Cmd+A / Cmd+S / Cmd+- (radera markerade celler) / Cmd+F.
             bindings = <
 &trans       &kp LC(LG(SV_H)) &kp LC(LG(SV_L)) &kp LC(LG(SV_N)) &kp LC(D)   &kp LC(U)                       &trans        &trans        &trans        &trans        &trans        &trans
 &kp SV_COLON &kp HOME     &kp PG_UP    &kp PG_DN    &kp END     &kp ENTER                       &trans        &kp SV_N4     &kp SV_N5     &kp SV_N6     &kp SV_PLUS   &trans
-&trans       &kp LG(LS(SV_H)) &kp LG(LS(SV_J)) &kp LG(LS(SV_K)) &kp LG(LS(SV_L)) &trans          &kp SV_EQUAL  &kp SV_N1     &kp SV_N2     &kp SV_N3     &kp SV_MINUS  &kp SV_ASTRK
+&trans       &kp LG(SV_A) &kp LG(SV_S) &kp LG(SV_MINUS) &kp LG(SV_F) &trans                          &kp SV_EQUAL  &kp SV_N1     &kp SV_N2     &kp SV_N3     &kp SV_MINUS  &kp SV_ASTRK
 &trans       &kp LG(Z)     &kp LG(X)     &kp LG(C)     &kp LG(V)   &kp LG(LS(Z)) &trans  &trans  &kp LG(LS(DOWN)) &kp LG(LS(RIGHT)) &kp SV_N0 &trans &kp SV_DOT &kp SV_FSLH
-                          &trans       &trans        &trans        &trans        &trans    &trans  &trans        &trans        &trans        &trans
+                          &trans       &trans        &trans        &trans        &kp LG(SPACE)   &trans  &trans        &trans        &trans        &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
